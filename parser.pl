@@ -20,16 +20,22 @@ while($line = <INFILE>)
         #multiple matching
         #(@tokens) = $line  =~ m/\b\w+\b/g;
         @tokens = split /\s+/, $line;
-        if( $tokens[2] =~ /add|sub/i)
+        if( $tokens[4] =~ /add|sub/i)
         {
             $id{$tokens[0]} = $cnt;
             $op{$tokens[0]} = "add";
             $cnt++;
         }
-        elsif( $tokens[2] =~ /mul/i)
+        elsif( $tokens[4] =~ /mul/i)
         {
             $id{$tokens[0]} = $cnt;
             $op{$tokens[0]} = "mul";
+            $cnt++;
+        }
+        elsif( $tokens[4] =~ /shl|ashr/i)
+        {
+            $id{$tokens[0]} = $cnt;
+            $op{$tokens[0]} = "shi";
             $cnt++;
         }
     }
